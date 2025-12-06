@@ -19,9 +19,7 @@ This repository contains the complete source code of the system, including front
 - Backend (Flask)
 - Database (SQLite)
 
-## Getting Started
-### Clone the Repository
-git clone https://github.com/your-username/Project-Scope-Tracker.git
+
 
 ### Run the Project
 Open the `index.html` file in any browser or run using a local server environment.
