@@ -1,0 +1,46 @@
+
+# Implementation Details
+
+## Project Title:
+To Build a Project Scope Tracker for Agile Teams
+
+## Technologies Used:
+- Python 3
+- Flask Framework
+- SQLite Database
+- HTML/CSS (Basic)
+
+## Project Structure:
+- app.py: Main application file with all Flask routes and database models.
+- templates/index.html: HTML file for frontend UI.
+- requirements.txt: Required Python libraries.
+
+## How It Works:
+
+### 1. Project Creation:
+Users can add new projects with a name and description. These are stored in the `Project` table.
+
+### 2. Scope Change Tracking:
+Allows users to log changes made to the project scope (like new features or removed tasks), and stores them in the `ScopeChange` table.
+
+### 3. Task Management:
+Users can assign tasks to each project and update their status (To Do, In Progress, Done). These are stored in the `Task` table.
+
+### 4. Web Interface:
+A simple web form on the homepage allows users to interact with all features: create project, log scope change, add tasks, and view progress.
+
+## Steps to Run:
+1. Install required packages:
+   pip install -r requirements.txt
+
+2. Run the application:
+   python app.py
+
+3. Open your browser and go to:
+   http://127.0.0.1:5000
+
+The app will auto-create the database file `agile.db` on the first run.
+
+## Notes:
+- This is a minimal prototype.
+- You can extend this by adding login, filters, charts, export to CSV/PDF, etc.

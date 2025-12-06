@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Project Scope Tracker</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <h1>📊 Project Scope Tracker</h1>
+
+  <!-- New Project -->
+  <h2>➕ Add New Project</h2>
+  <form method="POST" action="/add">
+    Name: <input type="text" name="name"><br>
+    Description: <input type="text" name="description"><br>
+    <input type="submit" value="Add Project">
+  </form>
+
+  <!-- All Projects -->
+  <h2>📁 All Projects</h2>
+  <ul>
+    {% for p in projects %}
+      <li>
+        <b>{{ p.name }}</b>: {{ p.description }}
+        – ✅ {{ progress[p.id] }}% Complete
+        | <a href="/delete_project/{{ p.id }}" onclick="return confirm('Delete project?')">🗑️ Delete</a>
+      </li>
+    {% endfor %}
+  </ul>
+
+  <!-- Scope Changes -->
+  <h2>🔄 Add Scope Change</h2>
+  <form method="POST" action="/add_change">
+    Project ID: <input type="text" name="project_id"><br>
+    Change: <input type="text" name="change"><br>
+    Date: <input type="text" name="date"><br>
+    <input type="submit" value="Add Change">
+  </form>
+
+  <!-- All Scope Changes -->
+  <h2>📌 All Scope Changes</h2>
+  <ul>
+    {% for c in changes %}
+      <li>
+        Project {{ c.project_id }} - {{ c.change }} on {{ c.date }}
+        | <a href="/delete_change/{{ c.id }}" onclick="return confirm('Delete change?')">🗑️ Delete</a>
+      </li>
+    {% endfor %}
+  </ul>
+
+  <!-- Add Task -->
+  <h2>🧾 Add Task</h2>
+  <form method="POST" action="/add_task">
+    Project ID: <input type="text" name="project_id"><br>
+    Task Name: <input type="text" name="task_name"><br>
+    Status:
+    <select name="status">
+      <option>To Do</option>
+      <option>In Progress</option>
+      <option>Done</option>
+    </select><br>
+    Due Date: <input type="text" name="due_date" placeholder="YYYY-MM-DD"><br>
+    Priority:
+    <select name="priority">
+      <option>High</option>
+      <option>Medium</option>
+      <option>Low</option>
+    </select><br>
+    <input type="submit" value="Add Task">
+  </form>
+
+  <!-- All Tasks -->
+  <h2>📋 All Tasks</h2>
+  <ul>
+    {% for t in tasks %}
+      <li>
+        Project {{ t.project_id }} – <b>{{ t.task_name }}</b>: 
+        <i>{{ t.status }}</i> | Due: {{ t.due_date }} | Priority: {{ t.priority }}
+        | <a href="/edit_task/{{ t.id }}">✏️ Edit</a>
+        | <a href="/delete_task/{{ t.id }}" onclick="return confirm('Delete task?')">🗑️ Delete</a>
+      </li>
+    {% endfor %}
+  </ul>
+</body>
+</html>
